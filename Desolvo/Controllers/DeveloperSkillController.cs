@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Desolvo.Controllers
 {
     [Route("api/developerskills")]
-    public class SkillDeveloperController : ControllerBase
+    public class DeveloperSkillController : ControllerBase
     {
         private DeveloperSkillService _developerSkillService = new DeveloperSkillService();
 

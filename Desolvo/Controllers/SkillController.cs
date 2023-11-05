@@ -64,7 +64,7 @@ namespace Desolvo.Controllers
         // rimuovo uno skill se non assegnato ad un developer
         [HttpDelete]
         [Route("{id}")]
-        public IActionResult DeleteSkill(int id)
+        public ActionResult DeleteSkill(int id)
         {
             bool deleted = _skillService.DeleteSkill(id);
 

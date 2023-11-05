@@ -19,6 +19,26 @@ namespace Desolvo.services
             return newDeveloperSkill;
         }
 
+        //modificare un developerSkill
+        public DeveloperSkill UpdateDeveloperSkill(int id, DeveloperSkill developerSkill)
+        {
+            DeveloperSkill existingDeveloperSkill = FakeDatabase.DeveloperSkills.FirstOrDefault(ds => ds.ID == id);
+
+                if (existingDeveloperSkill != null)
+                {
+                    // aggiornare i dati
+                    existingDeveloperSkill.DeveloperID = developerSkill.ID;
+                    existingDeveloperSkill.SkillID = developerSkill.ID;
+
+
+                    return existingDeveloperSkill;
+                }
+
+                // torna null se l'id dato al developerskill non esiste
+                return null;
+            
+        }
+
         // verificare se un developer ha degli skill associati
         public bool HasDeveloperSkills(int developerId)
         {

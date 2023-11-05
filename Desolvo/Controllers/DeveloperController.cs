@@ -66,7 +66,7 @@ namespace Desolvo.Controllers
         // rimuovo un developer (se non ha uno Skill) con il metodo http DELETE
         [HttpDelete]
         [Route("{id}")]
-        public IActionResult DeleteDeveloper(int id)
+        public ActionResult DeleteDeveloper(int id)
         {
             bool deleted = _developerService.DeleteDeveloper(id);
 

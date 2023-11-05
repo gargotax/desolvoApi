@@ -20,14 +20,23 @@ namespace Desolvo.services
                 return newDeveloper;
             }
 
-            // Ottenere un Developer tramite ID
-            public Developer GetDeveloperById(int id)
+        // Ottenere un Developer tramite ID
+        public Developer GetDeveloperById(int id)
+        {
+            foreach (var developer in FakeDatabase.Developers)
             {
-                return FakeDatabase.Developers.FirstOrDefault(dev => dev.ID == id);
+                if (developer.ID == id)
+                {
+                    return developer;
+                }
             }
 
-            // Aggiornare un Developer
-            public Developer UpdateDeveloper(int id, string name, string surname)
+            return null; // Restituiamo null se non viene trovato alcun Developer con l'ID specificato.
+        }
+
+
+        // Aggiornare un Developer
+        public Developer UpdateDeveloper(int id, string name, string surname)
             {
                 Developer existingDeveloper = FakeDatabase.Developers.FirstOrDefault(dev => dev.ID == id);
 
@@ -39,7 +48,7 @@ namespace Desolvo.services
 
                 return existingDeveloper;
             }
-
+            
             // Rimuovere un Developer tramite ID
             public bool DeleteDeveloper(int id)
             {
@@ -126,40 +135,76 @@ namespace Desolvo.services
                 return newDeveloperSkill;
             }
 
-            // verificare se il developer ha degli skill associati
-            private bool HasDeveloperSkills(int developerId)
+        // verificare se il developer ha degli skill associati
+        private bool HasDeveloperSkills(int developerId)
+        {
+            foreach (var developerSkill in FakeDatabase.DeveloperSkills)
             {
-                return FakeDatabase.DeveloperSkills.Any(ds => ds.DeveloperID == developerId);
+                if (developerSkill.DeveloperID == developerId)
+                {
+                    return true;
+                }
             }
 
-            // verificare se uno skill è associato a dei developer
-            private bool HasSkillDevelopers(int skillId)
+            return false;
+        }
+
+
+        // verificare se uno skill è associato a dei developer
+        private bool HasSkillDevelopers(int skillId)
+        {
+            foreach (var developerSkill in FakeDatabase.DeveloperSkills)
             {
-                return FakeDatabase.DeveloperSkills.Any(ds => ds.SkillID == skillId);
+                if (developerSkill.SkillID == skillId)
+                {
+                    return true;
+                }
             }
 
-            // metodo che genera un ID unico per Developer, Skill, e DeveloperSkill
-            private int GenerateDeveloperId()
-            {
-                return FakeDatabase.Developers.Count > 0
-                    ? FakeDatabase.Developers.Max(dev => dev.ID) + 1
-                    : 1;
-            }
+            return false;
+        }
 
-            private int GenerateSkillId()
-            {
-                return FakeDatabase.Skills.Count > 0
-                    ? FakeDatabase.Skills.Max(skill => skill.ID) + 1
-                    : 1;
-            }
 
-            private int GenerateDeveloperSkillId()
+        // metodo che genera un ID unico per Developer, Skill, e DeveloperSkill
+        private int GenerateDeveloperId()
+        {
+            if (FakeDatabase.Developers.Count > 0)
             {
-                return FakeDatabase.DeveloperSkills.Count > 0
-                    ? FakeDatabase.DeveloperSkills.Max(ds => ds.ID) + 1
-                    : 1;
+                return FakeDatabase.Developers.Max(dev => dev.ID) + 1;
+            }
+            else
+            {
+                return 1;
+            }
+        }
+
+
+        private int GenerateSkillId()
+        {
+            if (FakeDatabase.Skills.Count > 0)
+            {
+                return FakeDatabase.Skills.Max(skill => skill.ID) + 1;
+            }
+            else
+            {
+                return 1;
+            }
+        }
+
+
+        private int GenerateDeveloperSkillId()
+        {
+            if (FakeDatabase.DeveloperSkills.Count > 0)
+            {
+                return FakeDatabase.DeveloperSkills.Max(ds => ds.ID) + 1;
+            }
+            else
+            {
+                return 1;
             }
         }
 
     }
+
+}
 
