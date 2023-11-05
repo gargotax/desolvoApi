@@ -79,6 +79,8 @@ namespace Desolvo.Controllers
                 return BadRequest("Failed to delete developer. It may be associated with a Skill.");
             }
         }
+
+
     }
 
 }

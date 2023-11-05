@@ -191,7 +191,6 @@ namespace Desolvo.services
             }
         }
 
-
         private int GenerateDeveloperSkillId()
         {
             if (FakeDatabase.DeveloperSkills.Count > 0)
@@ -203,6 +202,8 @@ namespace Desolvo.services
                 return 1;
             }
         }
+
+
 
     }
 

@@ -9,6 +9,7 @@ namespace Desolvo.Controllers
     {
         private DeveloperSkillService _developerSkillService = new DeveloperSkillService();
 
+
         // Creo un nuovo DeveloperSkill
         [HttpPost]
         public ActionResult<DeveloperSkill> CreateDeveloperSkill(DeveloperSkill developerSkill)
@@ -79,6 +80,42 @@ namespace Desolvo.Controllers
                     return BadRequest("Failed to delete DeveloperSkill.");
                 }
             }
+
+            //creare uno skill assignement
+            [HttpPost]
+            [Route("assign")]
+            ActionResult<DeveloperSkill> AssignSkill(int developerId, int skillId)
+            {
+                DeveloperSkill assignedDeveloperSkill = _developerSkillService.AssignSkill(developerId, skillId);
+
+                if (assignedDeveloperSkill != null)
+                {
+                    return Ok(assignedDeveloperSkill); // Return the assigned DeveloperSkill.
+                }
+                else
+                {
+                    return BadRequest("Failed to assign skill."); // Handle assignment failure.
+                }
+            }
+
+            //rimuovere skill 
+            [HttpDelete]
+            [Route("delete-assignment")]
+            ActionResult DeleteAssignment(int developerId, int skillId)
+            {
+                bool isDeleted = _developerSkillService.DeleteAssignment(developerId, skillId);
+
+                if (isDeleted)
+                {
+                    return Ok("Skill assignment deleted successfully.");
+                }
+                else
+                {
+                    return NotFound("Skill assignment not found.");
+                }
+            }
+
+
         }
     }
 }
