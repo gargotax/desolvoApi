@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\hache\\desktop\\cours_web_developpement\\C#\\Desolvo\\Desolvo\\Desolvo.csproj": {}
+    "C:\\Users\\hache\\desktop\\DesolvoApi\\Desolvo\\Desolvo.csproj": {}
   },
   "projects": {
-    "C:\\Users\\hache\\desktop\\cours_web_developpement\\C#\\Desolvo\\Desolvo\\Desolvo.csproj": {
+    "C:\\Users\\hache\\desktop\\DesolvoApi\\Desolvo\\Desolvo.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\hache\\desktop\\cours_web_developpement\\C#\\Desolvo\\Desolvo\\Desolvo.csproj",
+        "projectUniqueName": "C:\\Users\\hache\\desktop\\DesolvoApi\\Desolvo\\Desolvo.csproj",
         "projectName": "Desolvo",
-        "projectPath": "C:\\Users\\hache\\desktop\\cours_web_developpement\\C#\\Desolvo\\Desolvo\\Desolvo.csproj",
+        "projectPath": "C:\\Users\\hache\\desktop\\DesolvoApi\\Desolvo\\Desolvo.csproj",
         "packagesPath": "C:\\Users\\hache\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\hache\\desktop\\cours_web_developpement\\C#\\Desolvo\\Desolvo\\obj\\",
+        "outputPath": "C:\\Users\\hache\\desktop\\DesolvoApi\\Desolvo\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\hache\\AppData\\Roaming\\NuGet\\NuGet.Config",

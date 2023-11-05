@@ -47,7 +47,7 @@ namespace Desolvo.services
 
                 if (existingDeveloper != null)
                 {
-                    // verificare se il developer ha degli skill associati e nel caso, non rimuobere
+                    // verificare se il developer ha degli skill associati e nel caso, non rimuovere
                     if (HasDeveloperSkills(id))
                     {
                         return false; 

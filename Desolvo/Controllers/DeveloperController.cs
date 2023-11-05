@@ -49,7 +49,10 @@ namespace Desolvo.Controllers
         public ActionResult<Developer> UpdateDeveloper(int id, Developer developer)
         {
             Developer updatedDeveloper = _developerService.UpdateDeveloper(id, developer.Name, developer.Surname);
-
+            if (updatedDeveloper == null)
+            {
+                return NotFound();
+            }
             if (updatedDeveloper != null)
             {
                 return Ok(updatedDeveloper);

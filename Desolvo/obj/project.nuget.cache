@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "RN1hhz/GpTmJAuD8HlWL6btTAf7qG5Impts2kydoFFj1zt/r2VyvGMv1XW5icufRgzLyWSa85fdF2S3DgwZfng==",
+  "dgSpecHash": "wawm+yK0j16E5ry8FQ+l212dgjsM2mLnzGGgxORGD1rVFaAlV+hu3REvkvSQSNfVR5X0/B8e08O4ceYOBAMpyg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\hache\\desktop\\cours_web_developpement\\C#\\Desolvo\\Desolvo\\Desolvo.csproj",
+  "projectFilePath": "C:\\Users\\hache\\desktop\\DesolvoApi\\Desolvo\\Desolvo.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\hache\\.nuget\\packages\\microsoft.aspnetcore.openapi\\7.0.13\\microsoft.aspnetcore.openapi.7.0.13.nupkg.sha512",
     "C:\\Users\\hache\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
