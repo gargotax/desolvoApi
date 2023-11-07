@@ -49,7 +49,7 @@ namespace Desolvo.Controllers
         [Route("{id}")]
         public ActionResult<Skill> UpdateSkill(int id, Skill skill)
         {
-            Skill updatedSkill = _skillService.UpdateSkill(id, skill.Name);
+            Skill updatedSkill = _skillService.UpdateSkill(id, skill);
 
             if (updatedSkill != null)
             {

@@ -25,16 +25,20 @@ namespace Desolvo.services
         }
 
         // Aggiornare uno skill esistente
-        public Skill UpdateSkill(int id, string name)
+        public Skill UpdateSkill(int id, Skill updatedSkill)
         {
-            Skill existingSkill = FakeDatabase.Skills.FirstOrDefault(skill => skill.ID == id);
+            Skill existingSkill = FakeDatabase.Skills.FirstOrDefault(s => s.ID == id);
 
             if (existingSkill != null)
             {
-                existingSkill.Name = name;
-            }
+                existingSkill.Name = updatedSkill.Name;
 
-            return existingSkill;
+                return existingSkill;
+            }
+            else
+            {
+                return null; 
+            }
         }
 
         // rimuovere uno skill tramite ID

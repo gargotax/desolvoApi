@@ -4,118 +4,79 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Desolvo.Controllers
 {
-    [Route("api/developerskills")]
+    [Route("api/developerskill")]
+    [ApiController]
     public class DeveloperSkillController : ControllerBase
     {
-        private DeveloperSkillService _developerSkillService = new DeveloperSkillService();
+        private readonly DeveloperSkillService _developerSkillService;
 
-
-        // Creo un nuovo DeveloperSkill
-        [HttpPost]
-        public ActionResult<DeveloperSkill> CreateDeveloperSkill(DeveloperSkill developerSkill)
+        public DeveloperSkillController(DeveloperSkillService developerSkillService)
         {
-            DeveloperSkill createdDeveloperSkill = _developerSkillService.CreateDeveloperSkill(developerSkill.DeveloperID, developerSkill.SkillID);
+            _developerSkillService = developerSkillService;
+        }
 
-            if (createdDeveloperSkill != null)
+        [HttpPost]
+        [Route("assign")]
+        public ActionResult<DeveloperSkill> AssignSkill(int developerId, int skillId)
+        {
+            DeveloperSkill assignedDeveloperSkill = _developerSkillService.AssignSkill(developerId, skillId);
+
+            if (assignedDeveloperSkill != null)
             {
-                return CreatedAtRoute("GetDeveloperSkill", new { id = createdDeveloperSkill.ID }, createdDeveloperSkill);
+                return Ok(assignedDeveloperSkill); // Return the assigned DeveloperSkill.
             }
             else
             {
-                return BadRequest("Failed to create Developer-Skill association.");
+                return BadRequest("Failed to assign skill."); // Handle assignment failure.
             }
         }
 
-        // ottengo un DeveloperSkill tramite il suo ID
+        [HttpDelete]
+        [Route("delete-assignment")]
+        public ActionResult DeleteAssignment(int developerId, int skillId)
+        {
+            bool isDeleted = _developerSkillService.DeleteAssignment(developerId, skillId);
+
+            if (isDeleted)
+            {
+                return Ok("Skill assignment deleted successfully.");
+            }
+            else
+            {
+                return NotFound("Skill assignment not found.");
+            }
+        }
+
+        [HttpPut]
+        [Route("{id}")]
+        public ActionResult<DeveloperSkill> UpdateDeveloperSkill(int id, DeveloperSkill developerSkill)
+        {
+            DeveloperSkill updatedDeveloperSkill = _developerSkillService.UpdateDeveloperSkill(id, developerSkill);
+
+            if (updatedDeveloperSkill != null)
+            {
+                return Ok(updatedDeveloperSkill); // Return the updated DeveloperSkill.
+            }
+            else
+            {
+                return NotFound("DeveloperSkill not found.");
+            }
+        }
+
         [HttpGet]
-        [Route("{id}", Name = "GetDeveloperSkill")]
+        [Route("{id}")]
         public ActionResult<DeveloperSkill> GetDeveloperSkill(int id)
         {
             DeveloperSkill developerSkill = _developerSkillService.GetDeveloperSkillById(id);
 
             if (developerSkill != null)
             {
-                return Ok(developerSkill);
+                return Ok(developerSkill); // Return the retrieved DeveloperSkill.
             }
             else
             {
-                return NotFound();
+                return NotFound("DeveloperSkill not found.");
             }
-
-            // aggiorno un DeveloperSkill
-            [HttpPut]
-            [Route("{id}")]
-            ActionResult<DeveloperSkill> UpdateDeveloperSkill(int id, DeveloperSkill developerSkill)
-            {
-                DeveloperSkill existingDeveloperSkill = _developerSkillService.GetDeveloperSkillById(id);
-
-                if (existingDeveloperSkill == null)
-                {
-                    return NotFound(); // Ritorna un errore 404 se non trova nulla.
-                }
-
-                // aggiorno il DeveloperSkill con dati dalla richiesta
-                existingDeveloperSkill.DeveloperID = developerSkill.DeveloperID;
-                existingDeveloperSkill.SkillID = developerSkill.SkillID;
-
-
-                return Ok(existingDeveloperSkill);
-            }
-
-
-            // rimuovo un DeveloperSkill
-            [HttpDelete]
-            [Route("{id}")]
-            ActionResult DeleteDeveloperSkill(int id)
-            {
-                
-                bool isDeleted = _developerSkillService.DeleteDeveloperSkill(id);
-
-                if (isDeleted)
-                {
-                    return Ok("DeveloperSkill deleted successfully.");
-                }
-                else
-                {
-                    return BadRequest("Failed to delete DeveloperSkill.");
-                }
-            }
-
-            //creare uno skill assignement
-            [HttpPost]
-            [Route("assign")]
-            ActionResult<DeveloperSkill> AssignSkill(int developerId, int skillId)
-            {
-                DeveloperSkill assignedDeveloperSkill = _developerSkillService.AssignSkill(developerId, skillId);
-
-                if (assignedDeveloperSkill != null)
-                {
-                    return Ok(assignedDeveloperSkill); // Return the assigned DeveloperSkill.
-                }
-                else
-                {
-                    return BadRequest("Failed to assign skill."); // Handle assignment failure.
-                }
-            }
-
-            //rimuovere skill 
-            [HttpDelete]
-            [Route("delete-assignment")]
-            ActionResult DeleteAssignment(int developerId, int skillId)
-            {
-                bool isDeleted = _developerSkillService.DeleteAssignment(developerId, skillId);
-
-                if (isDeleted)
-                {
-                    return Ok("Skill assignment deleted successfully.");
-                }
-                else
-                {
-                    return NotFound("Skill assignment not found.");
-                }
-            }
-
-
         }
     }
 }

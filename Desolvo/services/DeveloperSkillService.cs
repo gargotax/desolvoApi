@@ -113,8 +113,7 @@ namespace Desolvo.services
         //assegnare uno skill
         public DeveloperSkill AssignSkill(int developerId, int skillId)
         {
-            DeveloperSkill existingDeveloperSkill = FakeDatabase.DeveloperSkills
-                .FirstOrDefault(ds => ds.DeveloperID == developerId && ds.SkillID == skillId);
+            DeveloperSkill existingDeveloperSkill = FakeDatabase.DeveloperSkills.FirstOrDefault(ds => ds.DeveloperID == developerId && ds.SkillID == skillId);
 
             if (existingDeveloperSkill != null)
             {

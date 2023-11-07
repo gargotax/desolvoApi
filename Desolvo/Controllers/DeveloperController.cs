@@ -49,17 +49,13 @@ namespace Desolvo.Controllers
         public ActionResult<Developer> UpdateDeveloper(int id, Developer developer)
         {
             Developer updatedDeveloper = _developerService.UpdateDeveloper(id, developer.Name, developer.Surname);
-            if (updatedDeveloper == null)
-            {
-                return NotFound();
-            }
             if (updatedDeveloper != null)
             {
                 return Ok(updatedDeveloper);
             }
             else
             {
-                return BadRequest("Failed to update developer.");
+                return NotFound(); // Ritorna NotFound solo se il developer non è stato trovato.
             }
         }
 
